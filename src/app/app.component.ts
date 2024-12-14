@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,  // Mark it as standalone
+  imports: [CommonModule],  // Import required Angular modules like CommonModule
+  template: `<h1>Hello, {{ title }}</h1>`,
 })
 export class AppComponent {
   title = 'tickifyApp';
