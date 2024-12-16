@@ -1,12 +1,27 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Auth, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
-  standalone: true,  // Mark it as standalone
-  imports: [CommonModule],  // Import required Angular modules like CommonModule
-  template: `<h1>Hello, {{ title }}</h1>`,
+  standalone: true,
+  imports: [], // No need to import CommonModule if standalone
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'tickifyApp';
+  title = 'TickifyApp';
+
+  constructor(private auth: Auth) {}
+
+  login() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(this.auth, provider)
+      .then((result) => {
+        console.log('User signed in:', result.user);
+        // Handle successful sign-in (e.g., redirect to another page)
+      })
+      .catch((error) => {
+        console.error('Error during login:', error);
+      });
+  }
 }
